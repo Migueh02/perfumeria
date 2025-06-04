@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agua Bendita</title>
+    <link rel="stylesheet" href="estilos.css">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-message">
+                <span>Envío gratis en pedidos superiores a $50</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html" style="font-size: 28px; font-weight: bold; color: #ffffff; text-decoration: none;">Agua Bendita</a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="active">Inicio</a></li>
+                    <li><a href="productos.html">Perfumes</a></li>
+                    <li class="contact-dropdown">
+                        <a href="#">Contactar</a>
+                        <div class="dropdown-content">
+                            <div class="dropdown-features">
+                                <div class="feature-row">
+                                    <i class="fas fa-truck"></i>
+                                    <div class="feature-text">
+                                        <h4>Envíos gratis</h4>
+                                        <p>A ciudades principales</p>
+                                    </div>
+                                </div>
+                                <div class="feature-row">
+                                    <i class="fas fa-credit-card"></i>
+                                    <div class="feature-text">
+                                        <h4>Pagos en línea</h4>
+                                        <p>Paga rápidamente usando nuestra plataforma de pagos</p>
+                                    </div>
+                                </div>
+                                <div class="feature-row">
+                                    <i class="fas fa-headset"></i>
+                                    <div class="feature-text">
+                                        <h4>Atención al Cliente</h4>
+                                        <p>Asesoría especializada y soporte en línea en tiempo real</p>
+                                    </div>
+                                </div>
+                                <div class="feature-row">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <div class="feature-text">
+                                        <h4>Sitio Seguro</h4>
+                                        <p>Tu información siempre estará a salvo, no guardamos datos sensibles</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contact-content">
+                                <h3>Nuestra Tienda</h3>
+                                <h2>Si tienes alguna duda contáctanos</h2>
+                                <div class="contact-info">
+                                    <p>Calle 25 #85a 06 - Esquina, Oficina 1, Cali.</p>
+                                    <a href="#" class="contact-button">ENVÍANOS UN MENSAJE</a>
+                                </div>
+                                <div class="map-container">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.688029220681!2d-76.5436576!3d3.4197872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e30a6f0f5a9beb3%3A0x7e8f61f752c9d0a0!2sCalle%2025%20%2385a%2006%2C%20Cali%2C%20Valle%20del%20Cauca!5e0!3m2!1ses!2sco!4v1625234567890!5m2!1ses!2sco" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#">Preguntas</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a href="#" aria-label="Buscar"><i class="fas fa-search"></i></a>
+                <a href="#login" aria-label="Login"><i class="fas fa-user"></i></a>
+                <a href="carrito.html" aria-label="Carrito"><i class="fas fa-shopping-bag"></i></a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- FAQ Hero Section -->
+    <section class="faq-hero">
+        <div class="container">
+            <h1>Preguntas Frecuentes</h1>
+            <p>Encuentra respuestas a todas tus dudas sobre nuestros productos y servicios</p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="faq-categories">
+                <button class="category-btn active" data-category="pedidos">Pedidos y Envíos</button>
+                <button class="category-btn" data-category="productos">Productos</button>
+                <button class="category-btn" data-category="pagos">Pagos y Devoluciones</button>
+                <button class="category-btn" data-category="cuenta">Mi Cuenta</button>
+            </div>
+
+            <div class="faq-content" id="pedidos">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Cuál es el tiempo de entrega de los pedidos?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Los tiempos de entrega varían según tu ubicación:</p>
+                        <ul>
+                            <li>Ciudades principales: 1-3 días hábiles</li>
+                            <li>Otras ciudades: 3-5 días hábiles</li>
+                            <li>Zonas remotas: 5-7 días hábiles</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Cuánto cuesta el envío?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El envío es gratuito para pedidos superiores a $50. Para pedidos menores, el costo depende de tu ubicación y será calculado en el checkout.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Cómo puedo rastrear mi pedido?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Una vez que tu pedido sea enviado, recibirás un correo electrónico con el número de seguimiento. También puedes rastrear tu pedido desde tu cuenta en la sección "Mis Pedidos".</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-content hidden" id="productos">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Los perfumes son originales?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, todos nuestros perfumes son 100% originales y adquiridos directamente de los fabricantes o distribuidores autorizados. Garantizamos la autenticidad de todos nuestros productos.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Cuánto tiempo dura la fragancia?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La duración varía según el tipo de fragancia:</p>
+                        <ul>
+                            <li>Eau de Parfum (EDP): 6-8 horas</li>
+                            <li>Eau de Toilette (EDT): 4-6 horas</li>
+                            <li>Extrait de Parfum: 8-12 horas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Ofrecen muestras de perfumes?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, puedes solicitar hasta 3 muestras por pedido superior a $100. Las muestras son gratuitas y te ayudarán a descubrir nuevas fragancias.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-content hidden" id="pagos">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Qué métodos de pago aceptan?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Aceptamos los siguientes métodos de pago:</p>
+                        <ul>
+                            <li>Tarjetas de crédito (Visa, MasterCard, American Express)</li>
+                            <li>PayPal</li>
+                            <li>Transferencia bancaria</li>
+                            <li>Pago contra entrega (solo ciudades principales)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Cuál es la política de devoluciones?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Aceptamos devoluciones dentro de los 30 días posteriores a la compra, siempre que el producto:</p>
+                        <ul>
+                            <li>Esté sin usar y en su empaque original</li>
+                            <li>Incluya todos los accesorios y regalos promocionales</li>
+                            <li>Tenga el sello de seguridad intacto</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-content hidden" id="cuenta">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Cómo creo una cuenta?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Puedes crear una cuenta de forma gratuita haciendo clic en el icono de usuario en la parte superior de la página. Solo necesitas proporcionar tu correo electrónico y crear una contraseña.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Cuáles son los beneficios de tener una cuenta?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <ul>
+                            <li>Historial de pedidos</li>
+                            <li>Guardar direcciones de envío</li>
+                            <li>Lista de deseos</li>
+                            <li>Acceso a ofertas exclusivas</li>
+                            <li>Programa de puntos de fidelidad</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-support">
+                <h3>¿No encontraste lo que buscabas?</h3>
+                <p>Nuestro equipo de atención al cliente está disponible para ayudarte.</p>
+                <a href="#" class="btn">Contáctanos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Support Banner -->
+    <section class="support-banner">
+        <div class="container">
+            <div class="support-content">
+                <i class="fas fa-headset"></i>
+                <h2>Soporte 24/7</h2>
+                <p>Nuestro equipo está disponible para ayudarte en cualquier momento</p>
+                <div class="support-buttons">
+                    <a href="#" class="btn btn-outline"><i class="fas fa-phone"></i> Llamar ahora</a>
+                    <a href="#" class="btn btn-outline"><i class="fas fa-envelope"></i> Enviar email</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-column footer-logo-newsletter">
+                <div class="logo-footer">
+                     <a href="index.html" style="font-size: 24px; font-weight: bold; color: #333; text-decoration: none;">Agua Bendita</a>
+                </div>
+                <p>Suscríbete a nuestro newsletter para recibir ofertas exclusivas y las últimas novedades.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Tu correo electrónico" required>
+                    <button type="submit" class="btn">Suscribirse</button>
+                </form>
+            </div>
+            <div class="footer-column">
+                <h4>Empresa</h4>
+                <ul>
+                    <li><a href="#">Sobre Nosotros</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Tiendas</a></li>
+                    <li><a href="#">Trabaja con Nosotros</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Preguntas Frecuentes</a></li>
+                    <li><a href="#">Envíos y Devoluciones</a></li>
+                    <li><a href="#">Seguimiento de Pedido</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Términos y Condiciones</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Política de Cookies</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 Agua Bendita. Todos los derechos reservados.</p>
+                <div class="social-media-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-amex"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

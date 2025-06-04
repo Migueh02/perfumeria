@@ -1,0 +1,294 @@
+/* Products Page Styles */
+.products-hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('imagenes/perfumes/shahed-mufleh-AAI48xm9hDA-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 50px;
+}
+
+.products-hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
+.products-hero p {
+    font-size: 1.2em;
+    max-width: 600px;
+    font-family: 'Lato', sans-serif;
+}
+
+.products-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.filter-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 20px 0;
+    border-bottom: 1px solid #d4af37;
+}
+
+.filters {
+    display: flex;
+    gap: 20px;
+}
+
+.filter-dropdown {
+    position: relative;
+    min-width: 150px;
+}
+
+.filter-dropdown select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d4af37;
+    background: #fff;
+    appearance: none;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+}
+
+.filter-dropdown select:hover {
+    border-color: #000;
+}
+
+.view-options {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.view-options select {
+    padding: 8px;
+    border: 1px solid #d4af37;
+    font-family: 'Lato', sans-serif;
+}
+
+.view-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.view-buttons button {
+    border: 1px solid #d4af37;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.view-buttons button:hover {
+    background: #d4af37;
+    color: #fff;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.product-card {
+    background: #fff;
+    border: none;
+    padding: 0;
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.1);
+}
+
+.product-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.product-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #d4af37;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 0.8em;
+    font-family: 'Lato', sans-serif;
+}
+
+.product-info {
+    padding: 15px 0;
+    text-align: center;
+}
+
+.product-brand {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.product-name {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+    color: #000;
+}
+
+.product-price {
+    font-weight: bold;
+    color: #000;
+    font-family: 'Lato', sans-serif;
+}
+
+.product-original-price {
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 10px;
+    font-family: 'Lato', sans-serif;
+}
+
+.quick-view-btn {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    transition: bottom 0.3s ease;
+    font-family: 'Lato', sans-serif;
+    cursor: pointer;
+}
+
+.product-card:hover .quick-view-btn {
+    bottom: 0;
+}
+
+/* List View Styles */
+.products-grid.list-view {
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.products-grid.list-view .product-card {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 30px;
+    padding: 20px;
+    border: 1px solid #e9ecef;
+}
+
+.products-grid.list-view .product-image {
+    aspect-ratio: unset;
+    height: 100%;
+}
+
+.products-grid.list-view .product-info {
+    text-align: left;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.products-grid.list-view .product-name {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+
+.products-grid.list-view .product-brand {
+    font-size: 1em;
+}
+
+.products-grid.list-view .product-price {
+    font-size: 1.2em;
+    margin-top: auto;
+}
+
+.products-grid.list-view .quick-view-btn {
+    bottom: 20px;
+    right: 20px;
+    left: auto;
+    width: auto;
+    padding: 10px 20px;
+    background: #d4af37;
+}
+
+@media (max-width: 1200px) {
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .filter-section {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .filters {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .filter-dropdown {
+        width: 100%;
+    }
+
+    .view-options {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .products-grid.list-view .product-card {
+        grid-template-columns: 1fr;
+    }
+
+    .products-grid.list-view .product-image {
+        aspect-ratio: 3/4;
+    }
+}
+
+@media (max-width: 480px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+}
