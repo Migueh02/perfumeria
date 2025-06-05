@@ -1,16 +1,5 @@
 // Initialize all carousels when the document loads
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize hamburger menu
-    const hamburger = document.querySelector('.hamburger');
-    const mainNav = document.querySelector('.main-nav');
-    
-    if (hamburger && mainNav) {
-        hamburger.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
-    }
-
     // Initialize circular carousel
     initCircularCarousel();
     
@@ -23,37 +12,93 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Circular Carousel
 function initCircularCarousel() {
-    const track = document.querySelector('.carousel-track');
-    const items = document.querySelectorAll('.icon-item');
-    const prevButton = document.querySelector('.carousel-arrow.prev');
-    const nextButton = document.querySelector('.carousel-arrow.next');
+    const track = document.querySelector('.use-products .carousel-track');
+    const items = track.querySelectorAll('.icon-item');
+    const prevButton = document.querySelector('.use-products .carousel-arrow.prev');
+    const nextButton = document.querySelector('.use-products .carousel-arrow.next');
     
-    let currentIndex = 0;
-    const itemWidth = 230; // 200px del item + 30px de gap
-    const visibleItems = Math.floor(track.offsetWidth / itemWidth);
-    const maxIndex = items.length - visibleItems;
+    if (!track || !items.length || !prevButton || !nextButton) return;
 
-    function updateCarousel() {
-        track.style.transform = `translateX(${-currentIndex * itemWidth}px)`;
+    let currentIndex = 0;
+    let itemsPerView = 3;
+
+    function updateItemsPerView() {
+        if (window.innerWidth <= 768) {
+            itemsPerView = 1;
+        } else if (window.innerWidth <= 992) {
+            itemsPerView = 2;
+        } else {
+            itemsPerView = 3;
+        }
     }
 
-    prevButton.addEventListener('click', () => {
-        currentIndex = Math.max(currentIndex - 1, 0);
+    function updateCarousel() {
+        const slideAmount = -(currentIndex * (100 / itemsPerView));
+        track.style.transform = `translateX(${slideAmount}%)`;
+        
+        // Actualizar estado de los botones
+        prevButton.classList.toggle('disabled', currentIndex <= 0);
+        nextButton.classList.toggle('disabled', currentIndex >= items.length - itemsPerView);
+    }
+
+    function moveCarousel(direction) {
+        if (direction === 'next' && currentIndex < items.length - itemsPerView) {
+            currentIndex++;
+        } else if (direction === 'prev' && currentIndex > 0) {
+            currentIndex--;
+        }
         updateCarousel();
+    }
+
+    // Event Listeners
+    prevButton.addEventListener('click', () => {
+        if (!prevButton.classList.contains('disabled')) {
+            moveCarousel('prev');
+        }
     });
 
     nextButton.addEventListener('click', () => {
-        currentIndex = Math.min(currentIndex + 1, maxIndex);
-        updateCarousel();
+        if (!nextButton.classList.contains('disabled')) {
+            moveCarousel('next');
+        }
     });
 
-    // Actualizar cuando cambie el tamaño de la ventana
+    // Resize handling
+    let resizeTimer;
     window.addEventListener('resize', () => {
-        const newVisibleItems = Math.floor(track.offsetWidth / itemWidth);
-        const newMaxIndex = items.length - newVisibleItems;
-        currentIndex = Math.min(currentIndex, newMaxIndex);
-        updateCarousel();
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            updateItemsPerView();
+            // Ajustar el índice actual si es necesario
+            currentIndex = Math.min(currentIndex, items.length - itemsPerView);
+            updateCarousel();
+        }, 250);
     });
+
+    // Touch events
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    track.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > 50) { // Mínimo desplazamiento para considerar como swipe
+            if (diff > 0 && currentIndex < items.length - itemsPerView) {
+                moveCarousel('next');
+            } else if (diff < 0 && currentIndex > 0) {
+                moveCarousel('prev');
+            }
+        }
+    }, { passive: true });
+
+    // Inicialización
+    updateItemsPerView();
+    updateCarousel();
 }
 
 // Novedades Carousel
@@ -65,53 +110,87 @@ function initNovedadesCarousel() {
 
     if (!track || !prevButton || !nextButton || items.length === 0) return;
 
-    let currentPosition = 0;
-    const itemWidth = items[0].offsetWidth + 20; // Include margin
-    const totalItems = items.length;
-    let itemsPerView = calculateItemsPerView();
+    let currentIndex = 0;
+    let itemsPerView = getItemsPerView();
 
-    function calculateItemsPerView() {
-        if (window.innerWidth > 1200) return 3;
-        if (window.innerWidth > 768) return 2;
-        return 1;
+    function getItemsPerView() {
+        if (window.innerWidth <= 480) return 1;
+        if (window.innerWidth <= 768) return 2;
+        if (window.innerWidth <= 1200) return 4;
+        return 3;
     }
 
-    function updateCarouselPosition() {
-        track.style.transform = `translateX(${currentPosition}px)`;
+    function updateCarousel() {
+        const translateX = -(currentIndex * (103 / itemsPerView));
+        track.style.transform = `translateX(${translateX}%)`;
+        
+        // Actualizar estado de los botones
+        prevButton.classList.toggle('disabled', currentIndex <= 0);
+        nextButton.classList.toggle('disabled', currentIndex >= items.length - itemsPerView);
     }
 
     function moveCarousel(direction) {
-        const maxPosition = -(Math.max(0, totalItems - itemsPerView) * itemWidth);
+        const maxIndex = Math.max(0, items.length - itemsPerView);
         
-        if (direction === 'next') {
-            currentPosition = Math.max(maxPosition, currentPosition - (itemWidth * itemsPerView));
-        } else {
-            currentPosition = Math.min(0, currentPosition + (itemWidth * itemsPerView));
+        if (direction === 'next' && currentIndex < maxIndex) {
+            currentIndex = Math.min(maxIndex, currentIndex + itemsPerView);
+        } else if (direction === 'prev' && currentIndex > 0) {
+            currentIndex = Math.max(0, currentIndex - itemsPerView);
         }
         
-        updateCarouselPosition();
-        updateButtonStates();
-    }
-
-    function updateButtonStates() {
-        const maxPosition = -(Math.max(0, totalItems - itemsPerView) * itemWidth);
-        prevButton.style.opacity = currentPosition < 0 ? '1' : '0.5';
-        nextButton.style.opacity = currentPosition > maxPosition ? '1' : '0.5';
+        updateCarousel();
     }
 
     // Event Listeners
-    nextButton.addEventListener('click', () => moveCarousel('next'));
-    prevButton.addEventListener('click', () => moveCarousel('prev'));
-
-    window.addEventListener('resize', () => {
-        itemsPerView = calculateItemsPerView();
-        currentPosition = 0;
-        updateCarouselPosition();
-        updateButtonStates();
+    prevButton.addEventListener('click', () => {
+        if (!prevButton.classList.contains('disabled')) {
+            moveCarousel('prev');
+        }
     });
 
-    // Initial setup
-    updateButtonStates();
+    nextButton.addEventListener('click', () => {
+        if (!nextButton.classList.contains('disabled')) {
+            moveCarousel('next');
+        }
+    });
+
+    // Responsive handling
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            const newItemsPerView = getItemsPerView();
+            if (newItemsPerView !== itemsPerView) {
+                itemsPerView = newItemsPerView;
+                currentIndex = 0;
+                updateCarousel();
+            }
+        }, 250);
+    });
+
+    // Touch events
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    track.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+                moveCarousel('next');
+            } else {
+                moveCarousel('prev');
+            }
+        }
+    }, { passive: true });
+
+    // Inicialización
+    updateCarousel();
 }
 
 // Best Seller Tabs
@@ -282,5 +361,76 @@ document.addEventListener('DOMContentLoaded', function() {
                 faqItem.classList.add('active');
             }
         });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.querySelector('.hamburger');
+    const mainNav = document.querySelector('.main-nav');
+    const body = document.body;
+    
+    // Add overlay div if it doesn't exist
+    let menuOverlay = document.querySelector('.menu-overlay');
+    if (!menuOverlay) {
+        menuOverlay = document.createElement('div');
+        menuOverlay.className = 'menu-overlay';
+        document.body.appendChild(menuOverlay);
+    }
+
+    // Hamburger menu toggle
+    hamburger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        this.classList.toggle('active');
+        mainNav.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        body.classList.toggle('menu-open');
+    });
+
+    // Handle mobile dropdown
+    const contactDropdown = document.querySelector('.contact-dropdown');
+    const contactLink = contactDropdown.querySelector('a');
+
+    if (window.innerWidth <= 768) {
+        contactLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            contactDropdown.classList.toggle('show');
+            contactDropdown.classList.toggle('active');
+        });
+    }
+
+    // Close menu when clicking overlay
+    menuOverlay.addEventListener('click', function() {
+        closeMenu();
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!mainNav.contains(e.target) && !hamburger.contains(e.target)) {
+            closeMenu();
+        }
+    });
+
+    // Function to close menu
+    function closeMenu() {
+        hamburger.classList.remove('active');
+        mainNav.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        body.classList.remove('menu-open');
+        // Close any open dropdowns
+        const dropdowns = document.querySelectorAll('.contact-dropdown');
+        dropdowns.forEach(dropdown => dropdown.classList.remove('show'));
+    }
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            closeMenu();
+        }
+    });
+
+    // Prevent clicks inside mobile menu from closing it
+    mainNav.addEventListener('click', function(e) {
+        e.stopPropagation();
     });
 });
